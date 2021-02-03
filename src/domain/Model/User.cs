@@ -1,19 +1,29 @@
-﻿namespace domain.Model
+﻿using System;
+
+namespace domain.Model
 {
-    public class User
+    public class User : EntidadeBase
     {
+
         public User()
         {
 
         }
-        public User(int Id, string Name, int Age, bool IsActive)
+
+        public User(string name, int age,  bool isActive)
         {
-            this.Id = Id;
-            this.Name = Name;
-            this.Age = Age;
-            this.IsActive = IsActive;
+            Name = name;
+            Age = age;
+            IsActive = isActive;
         }
-        public int Id { get; set; }
+
+        public User( Guid id,  string name, int age, bool isActive)
+        {
+            Id = id;
+            Name = name;
+            Age = age;
+            IsActive = isActive;
+        }
         public string Name { get; set; }
         public int Age { get; set; }
         public bool IsActive { get; set; }
