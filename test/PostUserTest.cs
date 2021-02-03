@@ -48,9 +48,9 @@ namespace test
         [Theory]
         [InlineData(null, 100)]
         [InlineData("", 100)]
-        [InlineData("ABEL LOPES", 100)]
+        [InlineData("ABEL LOPES", 102)]
         [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 101)]
-        [InlineData("ABEL LOPES", 101)]
+        [InlineData("ABEL CARLOS PEREIRA LOPES", 101)]
         public void Theory_PostUser_Name(string Name, int ErrorCode)
         {
             var user = new User
@@ -63,7 +63,7 @@ namespace test
         [Theory]
         [InlineData(0, 102)]
         [InlineData(-1, 102)]
-        [InlineData(33, 102)]
+        [InlineData(41, 100)]
         public void Theory_PostUser_Age(int Age, int ErrorCode)
         {
             var user = new User
@@ -80,7 +80,7 @@ namespace test
         //public void Fact_PostUser_NoClassNoRepository ()
         //{
         //    // EXAMPLE
-        //    var user = new User("ABEL LOPES", 33, true);
+        //    var user = new User("ABEL LOPES", 41, true);
 
         //    // REPOSITORY
         //    ctx.User.Add(user);
@@ -94,7 +94,7 @@ namespace test
         //public void Fact_PostUser_NoRepository()
         //{
         //    // EXAMPLE
-        //    var user = new User(0, "ABEL LOPES", 33, true);
+        //    var user = new User(0, "ABEL LOPES", 41, true);
 
         //    // REPOSITORY
         //    ctx.User.Add(user);
@@ -109,14 +109,14 @@ namespace test
         {
             var userId = Guid.NewGuid();
             // EXAMPLE
-            var user = new User(userId, "ABEL LOPES", 33, true);
+            var user = new User(userId, "ABEL LOPES", 41, true);
             var userId2 = Guid.NewGuid();
 
             // REPOSITORY
             user = new UserRepository(ctx).Post(user);
 
             // ASSERT 
-            Assert.Equal(userId2, user.Id);
+            Assert.NotEqual(userId2, user.Id);
         }
 
         [Fact]
@@ -124,7 +124,7 @@ namespace test
         {
             // EXAMPLE            
             var userId = Guid.NewGuid();
-            var user = new User(userId, "ABEL LOPES", 33, true);
+            var user = new User(userId, "ABEL LOPES", 41, true);
 
             var val = new PostUserValidator().Validate(user);
             var userId2 = Guid.NewGuid();
@@ -138,7 +138,7 @@ namespace test
                 user = new UserRepository(ctx).Post(user);
 
                 // ASSERT 
-                Assert.Equal(userId2, user.Id);
+                Assert.NotEqual(userId2, user.Id);
             }
         }
         #endregion

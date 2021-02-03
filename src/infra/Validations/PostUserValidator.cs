@@ -11,7 +11,7 @@ namespace infra.Validations
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty()
                 .WithErrorCode("100")
-                .MaximumLength(20)
+                .MaximumLength(24)
                 .WithErrorCode("101");
 
             RuleFor(x => x.Age)
